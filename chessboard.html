@@ -116,9 +116,21 @@
         <div></div>
     </div>
 </div>
+<script>
+var prevEl = null;
+var prevColor = null;
+
+for (let e of document.querySelectorAll("div.chessboard > div > div")) {
+    e.onclick = function () {
+        if (prevEl !== null) {
+            prevEl.style.backgroundColor = prevColor;
+        }
+
+        prevEl = e;
+        prevColor = e.style.backgroundColor;
+        e.style.backgroundColor = "#f00";
+    }
+}
+</script>
 </body>
-
-
-
-
 </html>
