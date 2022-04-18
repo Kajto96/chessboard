@@ -9,7 +9,7 @@
         border: 2px solid black;
     }
     .chessboard div {
-        float:left;
+        display:inline;
         width:10vh;
         height: 10vh;
     }
@@ -30,6 +30,17 @@
     .black div:nth-child(even) {
         background-color: white;
     }
+    
+    .circle  
+    {
+        position:inherit;
+        width:99%;
+        height:99%;
+        overflow: hidden;
+    
+    } 
+  
+
 </style>
 
 </head>
@@ -37,33 +48,33 @@
 <div class="chessboard">
     <div class="white">
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img class="circle" src="circle.png" /></div>
     </div>
     <div class="black">
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
     </div>
     <div class="white">
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img class="circle" src="circle.png" /></div>
     </div>
     <div class="black">
         <div></div>
@@ -86,33 +97,33 @@
         <div></div>
     </div>
     <div class="black">
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
     </div> 
     <div class="white">
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img class="circle" src="circle.png" /></div>
     </div>
     <div class="black">
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div><img class="circle" src="circle.png" /></div>
         <div></div>
     </div>
 </div>
@@ -128,7 +139,10 @@ for (let e of document.querySelectorAll("div.chessboard > div > div")) {
 
         prevEl = e;
         prevColor = e.style.backgroundColor;
-        e.style.backgroundColor = "#f00";
+        e.style.backgroundColor = "#808080";
+        
+      
+    
     }
 }
 </script>
