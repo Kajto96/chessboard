@@ -13,24 +13,17 @@
         width:10vh;
         height: 10vh;
     }
-    .white div {
+    .square_row div{
         float:left;
         width:10vh;
         height: 10vh;
     }
-    .black div {
+    .black{
         float:left;
         width:10vh;
         height: 10vh;
         background-color: black;
     }
-    .white div:nth-child(even) {
-        background-color: black;
-    }
-    .black div:nth-child(even) {
-        background-color: white;
-    }
-    
     .circle  
     {
         position:inherit;
@@ -38,7 +31,7 @@
         height:99%;
         overflow: hidden;
     
-    } 
+    }
   
 
 </style>
@@ -46,84 +39,84 @@
 </head>
 <body>
 <div class="chessboard">
-    <div class="white">
+    <div class="square_row">
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
     </div>
-    <div class="black">
-        <div><img class="circle" src="circle.png" /></div>
+    <div class="square_row">
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
     </div>
-    <div class="white">
+    <div class="square_row">
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
     </div>
-    <div class="black">
+    <div class="square_row">
+        <div class="black"></div>
         <div></div>
+        <div class="black"></div>
         <div></div>
+        <div class="black"></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="black"></div>
         <div></div>
     </div> 
-    <div class="white">
+    <div class="square_row">
         <div></div>
+        <div class="black"></div>
         <div></div>
+        <div class="black"></div>
         <div></div>
+        <div class="black"></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="black"></div>
     </div>
-    <div class="black">
-        <div><img class="circle" src="circle.png" /></div>
+    <div class="square_row">
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
     </div> 
-    <div class="white">
+    <div class="square_row">
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
     </div>
-    <div class="black">
-        <div><img class="circle" src="circle.png" /></div>
+    <div class="square_row">
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
-        <div><img class="circle" src="circle.png" /></div>
+        <div class="black"><img class="circle" src="circle.png" /></div>
         <div></div>
     </div>
 </div>
@@ -140,9 +133,6 @@ for (let e of document.querySelectorAll("div.chessboard > div > div")) {
         prevEl = e;
         prevColor = e.style.backgroundColor;
         e.style.backgroundColor = "#808080";
-        
-      
-    
     }
 }
 </script>
