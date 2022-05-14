@@ -32,6 +32,7 @@
     }
     .circle  
     {
+        content:url("circle.png");
         position:inherit;
         width:99%;
         height:99%;
@@ -47,108 +48,134 @@
 <div class="chessboard">
     <div class="square_row">
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
     </div>
     <div class="square_row">
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
     </div>
     <div class="square_row">
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
     </div>
     <div class="square_row">
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
     </div> 
     <div class="square_row">
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
         <div class="white"></div>
-        <div class="black"></div>
+        <div class="black "></div>
     </div>
     <div class="square_row">
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
     </div> 
     <div class="square_row">
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
     </div>
     <div class="square_row">
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
-        <div class="black"><img class="circle" src="circle.png" /></div>
+        <div class="black circle"></div>
         <div class="white"></div>
     </div>
 </div>
 <script>
 var prevEl = null;
 var prevColor = null;
-
-for (let e of document.querySelectorAll("div.chessboard > div > div")) {
+for (let e of document.querySelectorAll("div.chessboard > div > div.black")) {
     e.onclick = function () {
-        if (prevEl === e) {
+        if (e.classList.contains('circle')){
+            
+        }
+        else {
+            e.classList.add('circle');
+            prevEl.classList.remove('circle');
+        }
+        if (prevEl === e) {      
             if (e.style.backgroundColor === prevColor) {
                 e.style.backgroundColor = "#808080";
+                
+                
+                
+                    
+                
+
             } else {
                 e.style.backgroundColor = prevColor;
+                
+                
+            
+                
+               
+                
             }
         } else {
             if (prevEl !== null) {
                 prevEl.style.backgroundColor = prevColor;
+                
             }
+           
 
             prevEl = e;
             prevColor = e.style.backgroundColor;
             e.style.backgroundColor = "#808080";
+            
+                
+            
+            
         }
+       
     }
 }
+
 </script>
 </body>
 </html>
