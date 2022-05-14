@@ -1,47 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><title>chessboard</title>
-<style>
-    .chessboard {
-        width: 80vh;
-        height: 80vh;
-        margin: 4% auto 0;
-        border: 2px solid black;
-    }
-    .chessboard div {
-        display:inline;
-        width:10vh;
-        height: 10vh;
-    }
-    .square_row div{
-        float:left;
-        width:10vh;
-        height: 10vh;
-    }
-    .black{
-        float:left;
-        width:10vh;
-        height: 10vh;
-        background-color: black;
-    }
-    .white{
-        float:left;
-        width:10vh;
-        height: 10vh;
-        background-color: white;
-    }
-    .circle  
-    {
-        content:url("circle.png");
-        position:inherit;
-        width:99%;
-        height:99%;
-        overflow: hidden;
-    
-    }
-  
-
-</style>
+    <link rel="stylesheet" href="chessboard.css">
 
 </head>
 <body>
@@ -127,55 +87,6 @@
         <div class="white"></div>
     </div>
 </div>
-<script>
-var prevEl = null;
-var prevColor = null;
-for (let e of document.querySelectorAll("div.chessboard > div > div.black")) {
-    e.onclick = function () {
-        if (e.classList.contains('circle')){
-            
-        }
-        else {
-            e.classList.add('circle');
-            prevEl.classList.remove('circle');
-        }
-        if (prevEl === e) {      
-            if (e.style.backgroundColor === prevColor) {
-                e.style.backgroundColor = "#808080";
-                
-                
-                
-                    
-                
-
-            } else {
-                e.style.backgroundColor = prevColor;
-                
-                
-            
-                
-               
-                
-            }
-        } else {
-            if (prevEl !== null) {
-                prevEl.style.backgroundColor = prevColor;
-                
-            }
-           
-
-            prevEl = e;
-            prevColor = e.style.backgroundColor;
-            e.style.backgroundColor = "#808080";
-            
-                
-            
-            
-        }
-       
-    }
-}
-
-</script>
+<script src="chessboard.js"></script> >
 </body>
 </html>
