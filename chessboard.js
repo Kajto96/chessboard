@@ -21,9 +21,35 @@ class Chessboard {
     ]
   }
 
+  onClick (ev) {
+    console.log(this)
+    const el = ev.target
+    const field = this.findField(el)
+
+    if (field.getCircle() != null) {
+      this.selected = field
+    }
+
+    console.log(field)
+  }
+
+  findField (el) {
+    let field = null;
+
+    for (let y = 0; y < this.fields.length; y++) {
+      for (let x = 0; x < this.fields[y].length; x++) {
+        field = this.getField(x, y)
+        if (field.getElement() == el) {
+          return field
+        }
+      }
+    }
+
+    return null
+  }
+
   getField (x, y) {
-    // eslint-disable-next-line no-unused-expressions
-    this.fields[y][x]
+    return this.fields[y][x]
   }
 }
 
@@ -38,11 +64,19 @@ class Field {
     this.element = e
   }
 
+  getElement () {
+    return this.element
+  }
+
   setCircle (circle) {
     if (circle) {
       this.circle = circle
       this.element.classList.add('circle')
     }
+  }
+
+  getCircle() {
+    return this.circle
   }
 }
 
@@ -50,8 +84,6 @@ class Circle {
   constructor (x, y) {
     this.x = x
     this.y = y
-
-    console.log(x + ', ' + y)
   }
 
   canMove () {
@@ -100,11 +132,11 @@ for (const e of document.querySelectorAll('div.chessboard > div > div')) {
   if (e.classList.contains('black')) {
     const field = chessboard.getField(x, y)
     field.setElement(e)
-    e.onclick = circles.onClick
-  }
-  x++
-  if (x >= 8) {
-    x = 0
-    y++
+    e.onclick = chessboard.onClick.bind(chessboard)
+    x++
+    if (x >= 4) {
+      x = 0
+      y++
+    }
   }
 }
