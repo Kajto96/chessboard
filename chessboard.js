@@ -17,8 +17,60 @@ class Chessboard {
       [new Field(), new Field(), new Field(), new Field()],
       [new Field(this.circles[12]), new Field(this.circles[13]), new Field(this.circles[14]), new Field(this.circles[15])],
       [new Field(this.circles[16]), new Field(this.circles[17]), new Field(this.circles[18]), new Field(this.circles[19])],
-      [new Field(this.circles[20]), new Field(this.circles[21]), new Field(this.circles[22]), new Field(this.circles[23])],
+      [new Field(this.circles[20]), new Field(this.circles[21]), new Field(this.circles[22]), new Field(this.circles[23])]
     ]
+  }
+
+  onClick (ev) {
+    console.log(this)
+    const el = ev.target
+    const field = this.findField(el)
+
+    if (field.getCircle() != null) {
+      this.selected = field
+    }
+
+    if (!el.classList.contains('circle') && prevEl !== null) {
+      el.classList.add('circle')
+      prevEl.classList.remove('circle')
+    }
+
+    if (prevEl === el) {
+      if (el.style.backgroundColor === prevColor) {
+        el.style.backgroundColor = '808080'
+      } else {
+        el.style.backgroundColor = prevColor
+      }
+
+      prevEl = null
+    } else {
+      if (prevEl !== null) {
+        prevEl.style.backgroundColor = prevColor
+      }
+
+      if (el.classList.contains('circle')) {
+        prevEl = el
+        prevColor = el.style.backgroundColor
+        el.style.backgroundColor = '#808080'
+      }
+    }
+
+    console.log(field)
+  }
+
+  findField (el) {
+    let field = null
+
+    for (let y = 0; y < this.fields.length; y++) {
+      for (let x = 0; x < this.fields[y].length; x++) {
+        field = this.getField(x, y)
+        if (field.getElement() === el) {
+          return field
+        }
+      }
+    }
+
+    return null
   }
 
   getField (x, y) {
@@ -37,61 +89,34 @@ class Field {
     this.element = e
   }
 
+  getElement () {
+    return this.element
+  }
+
   setCircle (circle) {
     if (circle) {
       this.circle = circle
       this.element.classList.add('circle')
     }
   }
-  getCircle {
-  this.circle
+
+  getCircle () {
+    return this.circle
+  }
 }
 
 class Circle {
   constructor (x, y) {
     this.x = x
     this.y = y
-
-    console.log(x + ', ' + y)
   }
 
   canMove () {
     return false
   }
-
-  onClick (ev) {
-    const e = ev.target
-
-    if (!e.classList.contains('circle') && prevEl !== null && this.canMove()) {
-      e.classList.add('circle')
-      prevEl.classList.remove('circle')
-    }
-
-    if (prevEl === e) {
-      if (e.style.backgroundColor === prevColor) {
-        e.style.backgroundColor = '808080'
-      } else {
-        e.style.backgroundColor = prevColor
-      }
-
-      prevEl = null
-    } else {
-      if (prevEl !== null) {
-        prevEl.style.backgroundColor = prevColor
-      }
-
-      if (e.classList.contains('circle')) {
-        prevEl = e
-        prevColor = e.style.backgroundColor
-        e.style.backgroundColor = '#808080'
-      }
-    }
-  }
 }
 
 const chessboard = new Chessboard()
-
-const circles = []
 
 let prevEl = null
 let prevColor = null
@@ -101,10 +126,11 @@ for (const e of document.querySelectorAll('div.chessboard > div > div')) {
   if (e.classList.contains('black')) {
     const field = chessboard.getField(x, y)
     field.setElement(e)
-    e.onclick = circles.onClick
-  x++
-  if (x >= 4) {
-    x = 0
-    y++
+    e.onclick = chessboard.onClick.bind(chessboard)
+    x++
+    if (x >= 4) {
+      x = 0
+      y++
+    }
   }
 }
