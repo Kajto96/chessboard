@@ -22,8 +22,7 @@ class Chessboard {
   }
 
   getField (x, y) {
-    // eslint-disable-next-line no-unused-expressions
-    this.fields[y][x]
+    return this.fields[y][x]
   }
 }
 
@@ -44,6 +43,8 @@ class Field {
       this.element.classList.add('circle')
     }
   }
+  getCircle {
+  this.circle
 }
 
 class Circle {
@@ -101,9 +102,8 @@ for (const e of document.querySelectorAll('div.chessboard > div > div')) {
     const field = chessboard.getField(x, y)
     field.setElement(e)
     e.onclick = circles.onClick
-  }
   x++
-  if (x >= 8) {
+  if (x >= 4) {
     x = 0
     y++
   }
