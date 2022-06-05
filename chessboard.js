@@ -116,6 +116,7 @@ class Circle {
   }
 }
 
+
 const chessboard = new Chessboard()
 
 let prevEl = null
