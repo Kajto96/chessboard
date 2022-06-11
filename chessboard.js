@@ -10,14 +10,14 @@ class Chessboard {
     ]
 
     this.fields = [
-      [new Field(this.circles[0]), new Field(this.circles[1]), new Field(this.circles[2]), new Field(this.circles[3])],
-      [new Field(this.circles[4]), new Field(this.circles[5]), new Field(this.circles[6]), new Field(this.circles[7])],
-      [new Field(this.circles[8]), new Field(this.circles[9]), new Field(this.circles[10]), new Field(this.circles[11])],
-      [new Field(), new Field(), new Field(), new Field()],
-      [new Field(), new Field(), new Field(), new Field()],
-      [new Field(this.circles[12]), new Field(this.circles[13]), new Field(this.circles[14]), new Field(this.circles[15])],
-      [new Field(this.circles[16]), new Field(this.circles[17]), new Field(this.circles[18]), new Field(this.circles[19])],
-      [new Field(this.circles[20]), new Field(this.circles[21]), new Field(this.circles[22]), new Field(this.circles[23])]
+      [new Field(1,0,this.circles[0]), new Field(3,0,this.circles[1]), new Field(5,0,this.circles[2]), new Field(7,0,this.circles[3])],
+      [new Field(0,1,this.circles[4]), new Field(2,1,this.circles[5]), new Field(4,1,this.circles[6]), new Field(6,1,this.circles[7])],
+      [new Field(1,2,this.circles[8]), new Field(3,2,this.circles[9]), new Field(5,2,this.circles[10]), new Field(7,2,this.circles[11])],
+      [new Field(0,3), new Field(2,3), new Field(4,3), new Field(6,3)],
+      [new Field(1,4), new Field(3,4), new Field(5,4), new Field(7,4)],
+      [new Field(0,5,this.circles[12]), new Field(2,5,this.circles[13]), new Field(4,5,this.circles[14]), new Field(6,5,this.circles[15])],
+      [new Field(1,6,this.circles[16]), new Field(3,6,this.circles[17]), new Field(5,6,this.circles[18]), new Field(7,6,this.circles[19])],
+      [new Field(0,7,this.circles[20]), new Field(2,7,this.circles[21]), new Field(4,7,this.circles[22]), new Field(6,7,this.circles[23])]
     ]
   }
 
@@ -26,8 +26,11 @@ class Chessboard {
     const field = this.findField(el)
 
     if (field.getCircle() === null && this.selected) {
-      field.setCircle(this.selected.getCircle())
-      this.selected.setCircle(null)
+      const dist = this.getDistance(this.selected, field)
+      if (dist[0] === 1 && dist[1] === 1) {
+        field.setCircle(this.selected.getCircle())
+        this.selected.setCircle(null)
+      }
     }
     if (this.selected === field) {
       field.setHighlight(false)
@@ -39,6 +42,14 @@ class Chessboard {
       }
       this.selected = field
     }
+  }
+  getDistance (field1, field2) {
+
+    return [
+       Math.abs(field1.getX() - field2.getX()),
+       Math.abs(field1.getY() - field2.getY())
+      ]
+
   }
 
   findField (el) {
@@ -62,12 +73,23 @@ class Chessboard {
 }
 
 class Field {
-  constructor (circle) {
+  constructor (x, y, circle) {
     if (circle) {
       this.circle = circle
     } else {
       this.circle = null
     }
+
+    this.x = x
+    this.y = y
+  }
+
+  getX () {
+    return this.x
+  }
+
+  getY () {
+    return this.y
   }
 
   setElement (e) {
