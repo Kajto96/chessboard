@@ -22,40 +22,23 @@ class Chessboard {
   }
 
   onClick (ev) {
-    console.log(this)
     const el = ev.target
     const field = this.findField(el)
 
-    if (field.getCircle() != null) {
+    if (field.getCircle() === null && this.selected) {
+      field.setCircle(this.selected.getCircle())
+      this.selected.setCircle(null)
+    }
+    if (this.selected === field) {
+      field.setHighlight(false)
+      this.selected = null
+    } else if (field.getCircle()) {
+      field.setHighlight(true)
+      if (this.selected) {
+        this.selected.setHighlight(false)
+      }
       this.selected = field
     }
-
-    if (!el.classList.contains('circle') && prevEl !== null) {
-      el.classList.add('circle')
-      prevEl.classList.remove('circle')
-    }
-
-    if (prevEl === el) {
-      if (el.style.backgroundColor === prevColor) {
-        el.style.backgroundColor = '808080'
-      } else {
-        el.style.backgroundColor = prevColor
-      }
-
-      prevEl = null
-    } else {
-      if (prevEl !== null) {
-        prevEl.style.backgroundColor = prevColor
-      }
-
-      if (el.classList.contains('circle')) {
-        prevEl = el
-        prevColor = el.style.backgroundColor
-        el.style.backgroundColor = '#808080'
-      }
-    }
-
-    console.log(field)
   }
 
   findField (el) {
@@ -82,6 +65,8 @@ class Field {
   constructor (circle) {
     if (circle) {
       this.circle = circle
+    } else {
+      this.circle = null
     }
   }
 
@@ -97,14 +82,24 @@ class Field {
     if (circle) {
       this.circle = circle
       this.element.classList.add('circle')
+    } else {
+      this.element.classList.remove('circle')
+      this.circle = null
     }
   }
 
   getCircle () {
     return this.circle
   }
-}
 
+  setHighlight (highlight) {
+    if (highlight) {
+      this.element.style.backgroundColor = '#808080'
+    } else {
+      this.element.style.backgroundColor = 'black'
+    }
+  }
+}
 class Circle {
   constructor (x, y) {
     this.x = x
@@ -116,11 +111,8 @@ class Circle {
   }
 }
 
-
 const chessboard = new Chessboard()
 
-let prevEl = null
-let prevColor = null
 let x = 0
 let y = 0
 for (const e of document.querySelectorAll('div.chessboard > div > div')) {
