@@ -43,13 +43,12 @@ class Chessboard {
       this.selected = field
     }
   }
+
   getDistance (field1, field2) {
-
     return [
-       Math.abs(field1.getX() - field2.getX()),
-       Math.abs(field1.getY() - field2.getY())
-      ]
-
+      Math.abs(field1.getX() - field2.getX()),
+      Math.abs(field1.getY() - field2.getY())
+    ]
   }
 
   findField (el) {
@@ -103,9 +102,9 @@ class Field {
   setCircle (circle) {
     if (circle) {
       this.circle = circle
-      this.element.classList.add('circle')
+      this.element.classList.add('circlew')
     } else {
-      this.element.classList.remove('circle')
+      this.element.classList.remove('circle', 'circlew')
       this.circle = null
     }
   }
