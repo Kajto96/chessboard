@@ -27,7 +27,8 @@ class Chessboard {
 
     if (field.getCircle() === null && this.selected) {
       const dist = this.getDistance(this.selected, field)
-      if (dist[0] === 1 && dist[1] === 1) {
+      const movement = this.movement(this.selected, field)
+      if (dist[0] === 1 && dist[1] === 1 && movement[1] > 0) {
         field.setCircle(this.selected.getCircle())
         this.selected.setCircle(null)
       }
@@ -48,6 +49,13 @@ class Chessboard {
     return [
       Math.abs(field1.getX() - field2.getX()),
       Math.abs(field1.getY() - field2.getY())
+    ]
+  }
+
+  movement (field1, field2) {
+    return [
+      field1.getX() - field2.getX(),
+      field1.getY() - field2.getY()
     ]
   }
 
