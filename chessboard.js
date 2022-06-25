@@ -1,12 +1,12 @@
 class Chessboard {
   constructor () {
     this.circles = [
-      new Circle(), new Circle(), new Circle(), new Circle(),
-      new Circle(), new Circle(), new Circle(), new Circle(),
-      new Circle(), new Circle(), new Circle(), new Circle(),
-      new Circle(), new Circle(), new Circle(), new Circle(),
-      new Circle(), new Circle(), new Circle(), new Circle(),
-      new Circle(), new Circle(), new Circle(), new Circle()
+      new Circle(true), new Circle(true), new Circle(true), new Circle(true),
+      new Circle(true), new Circle(true), new Circle(true), new Circle(true),
+      new Circle(true), new Circle(true), new Circle(true), new Circle(true),
+      new Circle(false), new Circle(false), new Circle(false), new Circle(false),
+      new Circle(false), new Circle(false), new Circle(false), new Circle(false),
+      new Circle(false), new Circle(false), new Circle(false), new Circle(false)
     ]
 
     this.fields = [
@@ -25,12 +25,15 @@ class Chessboard {
     const el = ev.target
     const field = this.findField(el)
 
-    if (field.getCircle() === null && this.selected) {
-      const dist = this.getDistance(this.selected, field)
-      const movement = this.movement(this.selected, field)
-      if (dist[0] === 1 && dist[1] === 1 && movement[1] > 0) {
-        field.setCircle(this.selected.getCircle())
-        this.selected.setCircle(null)
+    if (this.emptyField(field) && this.selected !== null) {
+      if (this.oneSq(this.selected, field) {
+        if (this.selected.getCircle().isWhite() && !this.moveUp(this.selected, field)) {
+          field.setCircle(this.selected.getCircle())
+          this.selected.setCircle(null)
+        } else if (!this.selected.getCircle().isWhite() && this.moveUp(this.selected, field)) {
+          field.setCircle(this.selected.getCircle())
+          this.selected.setCircle(null)
+        }
       }
     }
     if (this.selected === field) {
@@ -45,14 +48,18 @@ class Chessboard {
     }
   }
 
-  getDistance (field1, field2) {
+  emptyField (field) {
+    return field.getCircle() === null
+  }
+
+  oneSq (field1, field2) {
     return [
       Math.abs(field1.getX() - field2.getX()),
       Math.abs(field1.getY() - field2.getY())
     ]
   }
 
-  movement (field1, field2) {
+  moveUp (field1, field2) {
     return [
       field1.getX() - field2.getX(),
       field1.getY() - field2.getY()
@@ -130,13 +137,12 @@ class Field {
   }
 }
 class Circle {
-  constructor (x, y) {
-    this.x = x
-    this.y = y
+  constructor (white) {
+    this.white = white
   }
 
-  canMove () {
-    return false
+  isWhite () {
+    return this.isWhite
   }
 }
 
