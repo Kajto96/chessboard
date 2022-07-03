@@ -26,11 +26,13 @@ class Chessboard {
     const field = this.findField(el)
 
     if (this.emptyField(field) && this.selected !== null) {
-      if (this.oneSq(this.selected, field) {
-        if (this.selected.getCircle().isWhite() && !this.moveUp(this.selected, field)) {
+      const movement = this.moveUp(this.selected, field)
+      const dist = this.oneSq(this.selected, field)
+      if (dist[0] === 1 && dist[1] === 1) {
+        if (this.whiteCircle() && movement[1] < 0) {
           field.setCircle(this.selected.getCircle())
           this.selected.setCircle(null)
-        } else if (!this.selected.getCircle().isWhite() && this.moveUp(this.selected, field)) {
+        } else if (this.blackCircle() && movement[1] > 0) {
           field.setCircle(this.selected.getCircle())
           this.selected.setCircle(null)
         }
@@ -46,6 +48,14 @@ class Chessboard {
       }
       this.selected = field
     }
+  }
+
+  blackCircle () {
+    return !this.selected.getCircle().isWhite()
+  }
+
+  whiteCircle () {
+    return this.selected.getCircle().isWhite()
   }
 
   emptyField (field) {
@@ -117,7 +127,9 @@ class Field {
   setCircle (circle) {
     if (circle) {
       this.circle = circle
-      this.element.classList.add('circlew')
+      if (circle.isWhite()) {
+        this.element.classList.add('circlew')
+      } else { this.element.classList.add('circle') }
     } else {
       this.element.classList.remove('circle', 'circlew')
       this.circle = null
@@ -142,7 +154,7 @@ class Circle {
   }
 
   isWhite () {
-    return this.isWhite
+    return this.white
   }
 }
 
