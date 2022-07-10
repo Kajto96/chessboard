@@ -10,32 +10,25 @@ class Chessboard {
     ]
 
     this.fields = [
-      [new Field(1,0,this.circles[0]), new Field(3,0,this.circles[1]), new Field(5,0,this.circles[2]), new Field(7,0,this.circles[3])],
-      [new Field(0,1,this.circles[4]), new Field(2,1,this.circles[5]), new Field(4,1,this.circles[6]), new Field(6,1,this.circles[7])],
-      [new Field(1,2,this.circles[8]), new Field(3,2,this.circles[9]), new Field(5,2,this.circles[10]), new Field(7,2,this.circles[11])],
-      [new Field(0,3), new Field(2,3), new Field(4,3), new Field(6,3)],
-      [new Field(1,4), new Field(3,4), new Field(5,4), new Field(7,4)],
-      [new Field(0,5,this.circles[12]), new Field(2,5,this.circles[13]), new Field(4,5,this.circles[14]), new Field(6,5,this.circles[15])],
-      [new Field(1,6,this.circles[16]), new Field(3,6,this.circles[17]), new Field(5,6,this.circles[18]), new Field(7,6,this.circles[19])],
-      [new Field(0,7,this.circles[20]), new Field(2,7,this.circles[21]), new Field(4,7,this.circles[22]), new Field(6,7,this.circles[23])]
+      [new Field(1, 0, this.circles[0]), new Field(3, 0, this.circles[1]), new Field(5, 0, this.circles[2]), new Field(7, 0, this.circles[3])],
+      [new Field(0, 1, this.circles[4]), new Field(2, 1, this.circles[5]), new Field(4, 1, this.circles[6]), new Field(6, 1, this.circles[7])],
+      [new Field(1, 2, this.circles[8]), new Field(3, 2, this.circles[9]), new Field(5, 2, this.circles[10]), new Field(7, 2, this.circles[11])],
+      [new Field(0, 3), new Field(2, 3), new Field(4, 3), new Field(6, 3)],
+      [new Field(1, 4), new Field(3, 4), new Field(5, 4), new Field(7, 4)],
+      [new Field(0, 5, this.circles[12]), new Field(2, 5, this.circles[13]), new Field(4, 5, this.circles[14]), new Field(6, 5, this.circles[15])],
+      [new Field(1, 6, this.circles[16]), new Field(3, 6, this.circles[17]), new Field(5, 6, this.circles[18]), new Field(7, 6, this.circles[19])],
+      [new Field(0, 7, this.circles[20]), new Field(2, 7, this.circles[21]), new Field(4, 7, this.circles[22]), new Field(6, 7, this.circles[23])]
     ]
   }
 
   onClick (ev) {
     const el = ev.target
     const field = this.findField(el)
-
     if (this.emptyField(field) && this.selected !== null) {
-      const movement = this.moveUp(this.selected, field)
-      const dist = this.oneSq(this.selected, field)
-      if (dist[0] === 1 && dist[1] === 1) {
-        if (this.whiteCircle() && movement[1] < 0) {
-          field.setCircle(this.selected.getCircle())
-          this.selected.setCircle(null)
-        } else if (this.blackCircle() && movement[1] > 0) {
-          field.setCircle(this.selected.getCircle())
-          this.selected.setCircle(null)
-        }
+      if (this.whiteCircle() && this.moveDown(this.selected, field)) {
+        this.moveCircle(this.selected, field)
+      } else if (this.blackCircle() && this.moveUp(this.selected, field)) {
+        this.moveCircle(this.selected, field)
       }
     }
     if (this.selected === field) {
@@ -62,14 +55,24 @@ class Chessboard {
     return field.getCircle() === null
   }
 
-  oneSq (field1, field2) {
-    return [
-      Math.abs(field1.getX() - field2.getX()),
-      Math.abs(field1.getY() - field2.getY())
-    ]
+  moveCircle (field1, field2) {
+    field2.setCircle(this.selected.getCircle())
+    field1.setCircle(null)
+  }
+
+  moveDown (field1, field2) {
+    if (field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1) {
+      return this.moveDown
+    }
   }
 
   moveUp (field1, field2) {
+    if (field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1) {
+      return this.moveUp
+    }
+  }
+
+  distance (field1, field2) {
     return [
       field1.getX() - field2.getX(),
       field1.getY() - field2.getY()
