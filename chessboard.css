@@ -11,8 +11,6 @@
 }
 .square_row div{
     float:left;
-    width:10vh;
-    height: 10vh;
 }
 .black{
     float:left;
@@ -26,9 +24,19 @@
     height: 10vh;
     background-color: white;
 }
-.circle  
+.circle
 {
+    
     content:url("circle.png");
+    position:inherit;
+    width:99%;
+    height:99%;
+    overflow: hidden;
+}
+.circlew
+{
+    
+    content:url("circlew.png");
     position:inherit;
     width:99%;
     height:99%;
