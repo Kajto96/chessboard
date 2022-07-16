@@ -61,22 +61,19 @@ class Chessboard {
   }
 
   moveDown (field1, field2) {
-    if (field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1) {
-      return this.moveDown
+    if (field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1 && field1.getX() - field2.getX() === 1) {
+      return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1
+    } else if (field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1 && field1.getX() - field2.getX() === -1) {
+      return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1
     }
   }
 
   moveUp (field1, field2) {
-    if (field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1) {
-      return this.moveUp
+    if (field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1 && field1.getX() - field2.getX() === 1) {
+      return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1
+    } else if (field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1 && field1.getX() - field2.getX() === -1) {
+      return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1
     }
-  }
-
-  distance (field1, field2) {
-    return [
-      field1.getX() - field2.getX(),
-      field1.getY() - field2.getY()
-    ]
   }
 
   findField (el) {
