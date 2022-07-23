@@ -19,6 +19,7 @@ class Chessboard {
       [new Field(1, 6, this.circles[16]), new Field(3, 6, this.circles[17]), new Field(5, 6, this.circles[18]), new Field(7, 6, this.circles[19])],
       [new Field(0, 7, this.circles[20]), new Field(2, 7, this.circles[21]), new Field(4, 7, this.circles[22]), new Field(6, 7, this.circles[23])]
     ]
+    this.currentPlayer = 1
   }
 
   onClick (ev) {
@@ -27,19 +28,29 @@ class Chessboard {
     if (this.emptyField(field) && this.selected !== null) {
       if (this.whiteCircle() && this.moveDown(this.selected, field)) {
         this.moveCircle(this.selected, field)
+        this.currentPlayer = 2
       } else if (this.blackCircle() && this.moveUp(this.selected, field)) {
         this.moveCircle(this.selected, field)
+        this.currentPlayer = 1
       }
-    }
-    if (this.selected === field) {
-      field.setHighlight(false)
-      this.selected = null
-    } else if (field.getCircle()) {
-      field.setHighlight(true)
-      if (this.selected) {
-        this.selected.setHighlight(false)
+      if (this.selected === field) {
+        field.setHighlight(false)
+        this.selected = null
+      } else if (field.getCircle()) {
+        if (this.selected === null) {
+          if ((field.getCircle().isWhite() && this.currentPlayer === 1) || (!field.getCircle().isWhite())) {
+            this.selected = field
+            field.setHighlight(true)
+          } else {}
+        } else {
+          if ((field.getCircle().isWhite() && this.currentPlayer === 1) || (!field.getCircle().isWhite())) {
+            field.setHighlight(true)
+            this.selected.setHighlight(false)
+            this.selected = field
+          } else {
+          }
+        }
       }
-      this.selected = field
     }
   }
 
@@ -56,24 +67,16 @@ class Chessboard {
   }
 
   moveCircle (field1, field2) {
-    field2.setCircle(this.selected.getCircle())
+    field2.setCircle(field1.getCircle())
     field1.setCircle(null)
   }
 
   moveDown (field1, field2) {
-    if (field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1 && field1.getX() - field2.getX() === 1) {
-      return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1
-    } else if (field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1 && field1.getX() - field2.getX() === -1) {
-      return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1
-    }
+    return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1
   }
 
   moveUp (field1, field2) {
-    if (field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1 && field1.getX() - field2.getX() === 1) {
-      return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1
-    } else if (field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1 && field1.getX() - field2.getX() === -1) {
-      return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1
-    }
+    return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1
   }
 
   findField (el) {
@@ -129,7 +132,9 @@ class Field {
       this.circle = circle
       if (circle.isWhite()) {
         this.element.classList.add('circlew')
-      } else { this.element.classList.add('circle') }
+      } else {
+        this.element.classList.add('circle')
+      }
     } else {
       this.element.classList.remove('circle', 'circlew')
       this.circle = null
