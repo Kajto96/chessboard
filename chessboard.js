@@ -20,35 +20,41 @@ class Chessboard {
       [new Field(0, 7, this.circles[20]), new Field(2, 7, this.circles[21]), new Field(4, 7, this.circles[22]), new Field(6, 7, this.circles[23])]
     ]
     this.currentPlayer = 1
+    this.selected = null
   }
 
   onClick (ev) {
     const el = ev.target
     const field = this.findField(el)
     if (this.emptyField(field) && this.selected !== null) {
-      if (this.whiteCircle() && this.moveDown(this.selected, field)) {
+      if (this.currentPlayer === 1 && this.whiteCircle() && this.moveDown(this.selected, field)) {
         this.moveCircle(this.selected, field)
         this.currentPlayer = 2
-      } else if (this.blackCircle() && this.moveUp(this.selected, field)) {
+      } else if (this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) {
         this.moveCircle(this.selected, field)
         this.currentPlayer = 1
       }
-      if (this.selected === field) {
-        field.setHighlight(false)
-        this.selected = null
-      } else if (field.getCircle()) {
-        if (this.selected === null) {
-          if ((field.getCircle().isWhite() && this.currentPlayer === 1) || (!field.getCircle().isWhite())) {
-            this.selected = field
-            field.setHighlight(true)
-          } else {}
-        } else {
-          if ((field.getCircle().isWhite() && this.currentPlayer === 1) || (!field.getCircle().isWhite())) {
-            field.setHighlight(true)
-            this.selected.setHighlight(false)
-            this.selected = field
-          } else {
-          }
+    } else if (this.selected === field) {
+      field.setHighlight(false)
+      this.selected = null
+    } else if (field.getCircle()) {
+      if (this.selected === null) {
+        if (field.getCircle().isWhite() && this.currentPlayer === 1) {
+          this.selected = field
+          field.setHighlight(true)
+        } else if (!field.getCircle().isWhite() && this.currentPlayer === 2) {
+          field.setHighlight(true)
+          this.selected = field
+        }
+      } else {
+        if (field.getCircle().isWhite() && this.currentPlayer === 1) {
+          field.setHighlight(true)
+          this.selected.setHighlight(false)
+          this.selected = field
+        } else if (!field.getCircle().isWhite() && this.currentPlayer === 2) {
+          field.setHighlight(true)
+          this.selected.setHighlight(false)
+          this.selected = field
         }
       }
     }
@@ -69,6 +75,8 @@ class Chessboard {
   moveCircle (field1, field2) {
     field2.setCircle(field1.getCircle())
     field1.setCircle(null)
+    this.selected.setHighlight(false)
+    this.selected = null
   }
 
   moveDown (field1, field2) {
