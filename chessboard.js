@@ -39,22 +39,16 @@ class Chessboard {
       this.selected = null
     } else if (field.getCircle()) {
       if (this.selected === null) {
-        if (field.getCircle().isWhite() && this.currentPlayer === 1) {
-          this.selected = field
-          field.setHighlight(true)
-        } else if (!field.getCircle().isWhite() && this.currentPlayer === 2) {
-          field.setHighlight(true)
-          this.selected = field
+        if (this.whiteTurnHighlight(field)) {
+          this.sHighlight(this.selected, field)
+        } else if (this.blackTurnHighlight(field)) {
+          this.sHighlight(this.selected, field)
         }
       } else {
-        if (field.getCircle().isWhite() && this.currentPlayer === 1) {
-          field.setHighlight(true)
-          this.selected.setHighlight(false)
-          this.selected = field
-        } else if (!field.getCircle().isWhite() && this.currentPlayer === 2) {
-          field.setHighlight(true)
-          this.selected.setHighlight(false)
-          this.selected = field
+        if (this.whiteTurnHighlight(field)) {
+          this.moveHighlight(this.selected, field)
+        } else if (this.blackTurnHighlight(field)) {
+          this.moveHighlight(this.selected, field)
         }
       }
     }
@@ -66,6 +60,25 @@ class Chessboard {
 
   whiteCircle () {
     return this.selected.getCircle().isWhite()
+  }
+
+  blackTurnHighlight (field) {
+    return !field.getCircle().isWhite() && this.currentPlayer === 2
+  }
+
+  whiteTurnHighlight (field) {
+    return field.getCircle().isWhite() && this.currentPlayer === 1
+  }
+
+  sHighlight (field1, field2) {
+    field2.setHighlight(true)
+    this.selected = field2
+  }
+
+  moveHighlight (field1, field2) {
+    field2.setHighlight(true)
+    this.selected.setHighlight(false)
+    this.selected = field2
   }
 
   emptyField (field) {
@@ -80,11 +93,11 @@ class Chessboard {
   }
 
   moveDown (field1, field2) {
-    return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1
+    return field1.getY() < field2.getY() && field1.getY() - field2.getY() === -1 && Math.abs(field1.getX() - field2.getX()) === 1
   }
 
   moveUp (field1, field2) {
-    return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1
+    return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1 && Math.abs(field1.getX() - field2.getX()) === 1
   }
 
   findField (el) {
