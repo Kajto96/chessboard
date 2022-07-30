@@ -30,7 +30,7 @@ class Chessboard {
       if (this.currentPlayer === 1 && this.whiteCircle() && this.moveDown(this.selected, field)) {
         this.moveCircle(this.selected, field)
         this.currentPlayer = 2
-      } else if (this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) {
+      } else if ((this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) || (this.currentPlayer === 2 && this.blackCircle() && this.canBeatUP(this.selected, field))) {
         this.moveCircle(this.selected, field)
         this.currentPlayer = 1
       }
@@ -98,6 +98,15 @@ class Chessboard {
 
   moveUp (field1, field2) {
     return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 1 && Math.abs(field1.getX() - field2.getX()) === 1
+  }
+
+  canBeatUP (field1, field2) {
+    if ((field1.getX() - 1 && field1.getY() - 1).getCircle() || (field1.getX() + 1 && field1.getY() - 1).getCircle()) {
+      return this.fields.getCircle()
+    }
+    if (this.fields.getCircle()) {
+      return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 2 && Math.abs(field1.getX() - field2.getX()) === 2
+    }
   }
 
   findField (el) {
