@@ -27,7 +27,7 @@ class Chessboard {
     const el = ev.target
     const field = this.findField(el)
     if (this.emptyField(field) && this.selected !== null) {
-      if (this.currentPlayer === 1 && this.whiteCircle() && this.moveDown(this.selected, field)) {
+      if ((this.currentPlayer === 1 && this.whiteCircle() && this.moveDown(this.selected, field)) || (this.currentPlayer === 1 && this.whiteCircle() && this.canBeatDown(this.selected, field))) {
         this.moveCircle(this.selected, field)
         this.currentPlayer = 2
       } else if ((this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) || (this.currentPlayer === 2 && this.blackCircle() && this.canBeatUP(this.selected, field))) {
@@ -101,12 +101,26 @@ class Chessboard {
   }
 
   canBeatUP (field1, field2) {
-    if ((field1.getX() - 1 && field1.getY() - 1).getCircle() || (field1.getX() + 1 && field1.getY() - 1).getCircle()) {
-      return this.fields.getCircle()
-    }
-    if (this.fields.getCircle()) {
-      return field1.getY() > field2.getY() && field1.getY() - field2.getY() === 2 && Math.abs(field1.getX() - field2.getX()) === 2
-    }
+    const xDiff = field1.getX() - field2.getX()
+    const middleX = (field1.getX() + field2.getX()) / 2
+    const middleY = (field1.getY() - field2.getY()) / 2
+    const middleMan = this.fields[middleY][middleX / 2]
+    return Math.abs(xDiff) === 2 &&
+    (field1.getY() - field2.getY()) === 2 &&
+  field2.getCircle() === null &&
+  middleMan.getCircle() !== null &&
+  middleMan.getCircle().isWhite()
+  }
+
+  canBeatDown (field1, field2) {
+    const xDiff = field1.getX() - field2.getX()
+    const middleX = ((field1.getX() + field2.getX()) / 2)
+    const middleMan = this.fields[field1.getY() + 1][middleX / 2]
+    return Math.abs(xDiff) === 2 &&
+  (field1.getY() - field2.getY()) === -2 &&
+  field2.getCircle() === null &&
+  middleMan.getCircle() !== null &&
+  !middleMan.getCircle().isWhite()
   }
 
   findField (el) {
