@@ -27,11 +27,17 @@ class Chessboard {
     const el = ev.target
     const field = this.findField(el)
     if (this.emptyField(field) && this.selected !== null) {
-      if ((this.currentPlayer === 1 && this.whiteCircle() && this.moveDown(this.selected, field)) || (this.currentPlayer === 1 && this.whiteCircle() && this.canBeatDown(this.selected, field))) {
+      if (this.currentPlayer === 1 && this.whiteCircle() && this.moveDown(this.selected, field)) {
+        this.moveCircle(this.selected, field)
+        this.currentPlayer = 2
+      } else if (this.currentPlayer === 1 && this.whiteCircle() && this.canBeatDown(this.selected, field)) {
         this.captureBlackPiece(this.selected, field)
         this.moveCircle(this.selected, field)
         this.currentPlayer = 2
-      } else if ((this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) || (this.currentPlayer === 2 && this.blackCircle() && this.canBeatUP(this.selected, field))) {
+      } else if (this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) {
+        this.moveCircle(this.selected, field)
+        this.currentPlayer = 1
+      } else if (this.currentPlayer === 2 && this.blackCircle() && this.canBeatUP(this.selected, field)) {
         this.captureWhitePiece(this.selected, field)
         this.moveCircle(this.selected, field)
         this.currentPlayer = 1
