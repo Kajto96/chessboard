@@ -21,6 +21,8 @@ class Chessboard {
     ]
     this.currentPlayer = 1
     this.selected = null
+    this.nrOfWhitePawns = 11
+    this.nrOfBlackPawns = 11
   }
 
   onClick (ev) {
@@ -34,6 +36,7 @@ class Chessboard {
         this.captureBlackPiece(this.selected, field)
         this.moveCircle(this.selected, field)
         this.currentPlayer = 2
+        console.log(this.nrOfBlackPawns--, ('black pawns'))
       } else if (this.currentPlayer === 2 && this.blackCircle() && this.moveUp(this.selected, field)) {
         this.moveCircle(this.selected, field)
         this.currentPlayer = 1
@@ -41,6 +44,7 @@ class Chessboard {
         this.captureWhitePiece(this.selected, field)
         this.moveCircle(this.selected, field)
         this.currentPlayer = 1
+        console.log(this.nrOfWhitePawns--, ('white pawns'))
       }
     } else if (this.selected === field) {
       field.setHighlight(false)
@@ -59,6 +63,9 @@ class Chessboard {
           this.moveHighlight(this.selected, field)
         }
       }
+    }
+    if (this.nrOfWhitePawns <= -1 || this.nrOfBlackPawns <= -1) {
+      alert('The end press F5 to restart')
     }
   }
 
