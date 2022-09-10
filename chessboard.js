@@ -64,8 +64,10 @@ class Chessboard {
         }
       }
     }
-    if (this.nrOfWhitePawns <= -1 || this.nrOfBlackPawns <= -1) {
-      alert('The end press F5 to restart')
+    if (this.nrOfWhitePawns <= -1) {
+      alert('Black color win press F5 to restart')
+    } else if (this.nrOfBlackPawns <= -1) {
+      alert('White color win press F5 to restart')
     }
   }
 
