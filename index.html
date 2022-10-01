@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="root">
+    <script type="text/babel">
+  class Square extends React.Component {
+  render() {
+    return (
+      <button className="square">
+      </button>
+    );
+  }
+}
+class BlackSquare extends React.Component {
+  render() {
+    return (
+      <button className="black-square">
+      </button>
+    );
+  }
+}
+class Board extends React.Component {
+  renderBlackSquare(i) {
+    return<BlackSquare />;
+  }
+  renderSquare(i) {
+    return<Square />;
+  }
+
+  render() {
+    return (
+        <div className="chessboard">
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+          {this.renderBlackSquare()}
+          {this.renderSquare()}
+        </div>
+    );
+  }
+}
+
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Board />);
+
+    </script>
+    </div>
+  </body>
+</html>
+

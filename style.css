@@ -1,0 +1,31 @@
+.square {
+    background: #fff;
+    float: left;
+    line-height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    width: 10vh;
+    height: 10vh;
+}
+
+.black-square {
+    background: black;
+    float: left;
+    line-height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    width: 10vh;
+    height: 10vh;
+}
+
+.chessboard {
+    width: 88vh;
+    height: 88vh;
+}
+
+.black-square:hover {
+    background-color: grey;
+}
+
