@@ -6,103 +6,156 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chessboard.css">
   </head>
   <body>
     <div id="root">
     <script type="text/babel">
-  class Square extends React.Component {
+  class White extends React.Component {
   render() {
     return (
-      <button className="square">
-      </button>
+      <div className="white">
+      </div>
     );
   }
 }
-class BlackSquare extends React.Component {
+class Black extends React.Component {
   render() {
     return (
-      <button className="black-square">
-      </button>
+      <div className="black">
+      </div>
     );
   }
 }
-class Board extends React.Component {
-  renderBlackSquare(i) {
-    return<BlackSquare />;
+class Square_row extends React.Component {
+  render() {
+    return (
+      <div className="square_row">
+      </div>
+    );
   }
-  renderSquare(i) {
-    return<Square />;
+}
+class CircleW extends React.Component {
+  render() {
+    return (
+      <div className="black circlew">
+      </div>
+    );
+  }
+}
+class Circle extends React.Component {
+  render() {
+    return (
+      <div className="black circle">
+      </div>
+    );
+  }
+}
+class Chessboard extends React.Component {
+  renderSquare_row(i) {
+    return<Square_row />;
   }
 
+  renderBlack(i) {
+    return<Black />;
+  }
+
+  renderCircleW(i) {
+    return<CircleW />
+  }
+
+  renderWhite(i) {
+    return<White />;
+  }
+
+  renderCircle(i) {
+    return<Circle />
+  }
+  
   render() {
     return (
         <div className="chessboard">
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
-          {this.renderBlackSquare()}
-          {this.renderSquare()}
+          <div className="square_row">
+          {this.renderWhite()}
+          {this.renderCircleW()} 
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
         </div>
+          <div className="square_row">
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+        </div>
+          <div className="square_row">
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+          {this.renderWhite()}
+          {this.renderCircleW()}
+        </div>
+          <div className="square_row">
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+        </div>
+          <div className="square_row">
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+        </div>
+          <div className="square_row">
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+        </div>
+          <div className="square_row">
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          </div>
+          <div className="square_row">
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+          {this.renderCircle()}
+          {this.renderWhite()}
+        </div>
+      </div>
     );
   }
 }
@@ -110,7 +163,7 @@ class Board extends React.Component {
 
       const container = document.getElementById('root');
       const root = ReactDOM.createRoot(container);
-      root.render(<Board />);
+      root.render(<Chessboard />);
 
     </script>
     </div>
