@@ -35,23 +35,17 @@ class Square_row extends React.Component {
     );
   }
 }
-class CircleW extends React.Component {
+
+class Fields extends React.Component {
   render() {
     return (
-      <div className="black circlew">
-      </div>
+      <Field />
     );
   }
 }
-class Circle extends React.Component {
-  render() {
-    return (
-      <div className="black circle">
-      </div>
-    );
-  }
-}
-class Chessboard extends React.Component {
+
+class Board extends React.Component {
+
   renderSquare_row(i) {
     return<Square_row />;
   }
@@ -60,16 +54,12 @@ class Chessboard extends React.Component {
     return<Black />;
   }
 
-  renderCircleW(i) {
-    return<CircleW />
-  }
-
   renderWhite(i) {
     return<White />;
   }
 
-  renderCircle(i) {
-    return<Circle />
+  renderFields(i) {
+    return<Field />;
   }
   
   render() {
@@ -77,33 +67,13 @@ class Chessboard extends React.Component {
         <div className="chessboard">
           <div className="square_row">
           {this.renderWhite()}
-          {this.renderCircleW()} 
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircleW()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircleW()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircleW()}
-        </div>
-          <div className="square_row">
-          {this.renderCircleW()}
-          {this.renderWhite()}
-          {this.renderCircleW()}
-          {this.renderWhite()}
-          {this.renderCircleW()}
-          {this.renderWhite()}
-          {this.renderCircleW()}
-          {this.renderWhite()}
-        </div>
-          <div className="square_row">
-          {this.renderWhite()}
-          {this.renderCircleW()}
-          {this.renderWhite()}
-          {this.renderCircleW()}
-          {this.renderWhite()}
-          {this.renderCircleW()}
-          {this.renderWhite()}
-          {this.renderCircleW()}
+          {this.renderBlack()}
         </div>
           <div className="square_row">
           {this.renderBlack()}
@@ -126,33 +96,53 @@ class Chessboard extends React.Component {
           {this.renderBlack()}
         </div>
           <div className="square_row">
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
         </div>
           <div className="square_row">
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
+        </div>
+          <div className="square_row">
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+        </div>
+          <div className="square_row">
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
+          {this.renderWhite()}
+          {this.renderBlack()}
           </div>
           <div className="square_row">
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
-          {this.renderCircle()}
+          {this.renderBlack()}
           {this.renderWhite()}
         </div>
       </div>
@@ -163,10 +153,11 @@ class Chessboard extends React.Component {
 
       const container = document.getElementById('root');
       const root = ReactDOM.createRoot(container);
-      root.render(<Chessboard />);
+      root.render(<Board />);
 
     </script>
     </div>
+    <script src="chessboard.js"></script>
   </body>
 </html>
 
