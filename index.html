@@ -21,8 +21,9 @@
 }
 class Black extends React.Component {
   render() {
-    return (
-      <div className="black">
+   let className = "black " + (this.props.circle || "");
+   return (
+      <div className={className}>
       </div>
     );
   }
@@ -35,31 +36,27 @@ class Square_row extends React.Component {
     );
   }
 }
-
-class Fields extends React.Component {
-  render() {
-    return (
-      <Field />
-    );
-  }
-}
-
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { fields: [{x, y, Circle}, ] };
+  }
 
-  renderSquare_row(i) {
+  renderSquare_row() {
     return<Square_row />;
   }
 
-  renderBlack(i) {
-    return<Black />;
-  }
+  renderBlack(circle) {
+    if (circle === "circle") {
+      return<Black circle={"circle"} />;
+  } else if (circle === "circlew"){
+    return<Black circle={"circlew"}/>;
+  } else 
+  return<Black />
+}
 
-  renderWhite(i) {
+  renderWhite() {
     return<White />;
-  }
-
-  renderFields(i) {
-    return<Field />;
   }
   
   render() {
@@ -67,13 +64,33 @@ class Board extends React.Component {
         <div className="chessboard">
           <div className="square_row">
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circlew")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circlew")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circlew")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circlew")}
+        </div>
+          <div className="square_row">
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+        </div>
+          <div className="square_row">
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
+          {this.renderWhite()}
+          {this.renderBlack("circlew")}
         </div>
           <div className="square_row">
           {this.renderBlack()}
@@ -96,53 +113,33 @@ class Board extends React.Component {
           {this.renderBlack()}
         </div>
           <div className="square_row">
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
-          {this.renderWhite()}
-        </div>
-          <div className="square_row">
-          {this.renderWhite()}
-          {this.renderBlack()}
-          {this.renderWhite()}
-          {this.renderBlack()}
-          {this.renderWhite()}
-          {this.renderBlack()}
-          {this.renderWhite()}
-          {this.renderBlack()}
-        </div>
-          <div className="square_row">
-          {this.renderBlack()}
-          {this.renderWhite()}
-          {this.renderBlack()}
-          {this.renderWhite()}
-          {this.renderBlack()}
-          {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
         </div>
           <div className="square_row">
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           </div>
           <div className="square_row">
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
-          {this.renderBlack()}
+          {this.renderBlack("circle")}
           {this.renderWhite()}
         </div>
       </div>
