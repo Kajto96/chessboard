@@ -14,16 +14,24 @@
   class White extends React.Component {
   render() {
     return (
-      <div className="white">
+      <div  className="white">
       </div>
     );
   }
 }
-class Black extends React.Component {
+class Black extends React.Component { 
   render() {
+   // const handleClick = event => {
+    // if(event.currentTarget.classList.contains('black'))
+    // return event.currentTarget.style.backgroundColor = ' #808080'
+   // if(event.currentTarget.classList.contains('#808080')){
+     // return event.currentTarget.classList.remove('#808080')
+  //  }
+  //}
+
    let className = "black " + (this.props.circle || "");
    return (
-      <div className={className}>
+       <div className={className} onClick={() => this.setState({selected: true})}>
       </div>
     );
   }
@@ -36,36 +44,89 @@ class Square_row extends React.Component {
     );
   }
 }
+class Field {
+  constructor (x, y, circle, highlight) {
+    if (circle) {
+      this.circle = circle
+    } else {
+      this.circle = null
+    }
+
+    this.x = x
+    this.y = y  
+  
+  if (highlight) {
+    this.highlight = highlight
+  } else {
+    this.highlight = false
+  }
+  }
+  getX () {
+    return this.x
+  }
+
+  getY () {
+    return this.y
+  }
+
+  getElement () {
+    return this.element
+  }
+}
 class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
+      selected: false,
       fields: [
-        [{x: 0, y: 0, circle: "circlew"},  {x: 1, y: 0, circle: "circlew"}, {x: 2, y: 0, circle: "circlew"}, {x: 3, y: 0, circle: "circlew"},],
-        [{x: 0, y: 1, circle: "circlew"},  {x: 1, y: 1, circle: "circlew"}, {x: 2, y: 1, circle: "circlew"}, {x: 3, y: 1, circle: "circlew"},],
-        [{x: 0, y: 2, circle: "circlew"},  {x: 1, y: 2, circle: "circlew"}, {x: 2, y: 2, circle: "circlew"}, {x: 3, y: 2, circle: "circlew"},],
-        [{x: 0, y: 3, circle: ""},  {x: 1, y: 3, circle: ""}, {x: 2, y: 3, circle: ""}, {x: 3, y: 3, circle: ""},],
-        [{x: 0, y: 4, circle: ""},  {x: 1, y: 4, circle: ""}, {x: 2, y: 4, circle: ""}, {x: 3, y: 4, circle: ""},],
-        [{x: 0, y: 5, circle: "circle"},  {x: 1, y: 5, circle: "circle"}, {x: 2, y: 5, circle: "circle"}, {x: 3, y: 5, circle: "circle"},],
-        [{x: 0, y: 6, circle: "circle"},  {x: 1, y: 6, circle: "circle"}, {x: 2, y: 6, circle: "circle"}, {x: 3, y: 6, circle: "circle"},],
-        [{x: 0, y: 7, circle: "circle"},  {x: 1, y: 7, circle: "circle"}, {x: 2, y: 7, circle: "circle"}, {x: 3, y: 7, circle: "circle"},]
+        [new Field(0, 0, "circlew"),new Field(1, 0, "circlew"),new Field(2, 0, "circlew"), new Field(3, 0, "circlew"),],
+        [new Field(0, 1, "circlew"),new Field(1, 1, "circlew"), new Field(2, 1, "circlew"), new Field(3, 1, "circlew"),],
+        [new Field(0, 2, "circlew"),new Field(1, 2, "circlew"),new Field(2, 2, "circlew"),new Field(3, 2, "circlew"),],
+        [new Field(0, 3, ""),new Field(1, 3, ""),new Field(2, 3, ""),new Field(3, 3, ""),],
+        [new Field(0, 4, ""),new Field(1, 4, ""),new Field(2, 4, ""),new Field(3, 4, ""),],
+        [new Field(0, 5, "circle"), new Field(1, 5, "circle"),new Field(2, 5, "circle"),new Field(3, 5, "circle"),],
+        [new Field(0, 6, "circle"),new Field(1, 6, "circle"),new Field(2, 6, "circle"),new Field(3, 6, "circle"),],
+        [new Field(0, 7, "circle"),new Field(1, 7, "circle"),new Field(2, 7, "circle"),new Field(3, 7, "circle"),]
       ] 
     };
+  }
+
+  findField (el) {
+    let field = null
+
+    for (let y = 0; y < this.fields.length; y++) {
+      for (let x = 0; x < this.fields[y].length; x++) {
+        field = this.getField(x, y)
+        if (field.getElement() === el) {
+          return field
+        }
+      }
+    }
+
+    return null
+  }
+
+  getField (x, y) {
+    return this.fields[y][x]
   }
 
   renderSquare_row() {
     return<Square_row />;
   }
 
-  renderBlack(circle) {
+
+  renderBlack(circle,selected) {
     let s = this.state;
     s.fields[0][0].circle = "";
-    if (circle === "circle") {
-      return<Black circle={"circle"} />;
-  } else if (circle === "circlew"){
-    return<Black circle={"circlew"}/>;
+    if (circle === "circle" && this.state.selected === true) {
+      return <Black style={{ backgroundColor: 'grey',}} circle={"circle"} />;
+    }else if (circle === "circle") {
+        return<Black circle={"circle"} />;
+      }
+   if (circle === "circlew"){
+    return<Black circle={"circlew"} />;
   } else 
-  return<Black />
+  return<Black/>
 }
 
   renderWhite() {
@@ -164,10 +225,8 @@ class Board extends React.Component {
       const container = document.getElementById('root');
       const root = ReactDOM.createRoot(container);
       root.render(<Board />);
-
     </script>
     </div>
-    <script src="chessboard.js"></script>
   </body>
 </html>
 
