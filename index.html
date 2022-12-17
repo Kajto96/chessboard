@@ -22,9 +22,9 @@
 class Black extends React.Component { 
   render() {
 
-   let className = "black " + (this.props.circle || "");
+   let className = "black " + (this.props.circle || "") +  (this.props.selected ? " grey" : "");
    return (
-       <div className={className}>
+       <div className={className} >
       </div>
     );
   }
@@ -38,7 +38,7 @@ class Square_row extends React.Component {
   }
 }
 class Field {
-  constructor (x, y, circle, highlight) {
+  constructor (x, y, circle) {
     if (circle) {
       this.circle = circle
     } else {
@@ -47,12 +47,6 @@ class Field {
 
     this.x = x
     this.y = y  
-  
-  if (highlight) {
-    this.highlight = highlight
-  } else {
-    this.highlight = false
-  }
   }
   getX () {
     return this.x
@@ -71,7 +65,7 @@ class Board extends React.Component {
     super(props);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.state = { 
-      selected: false,
+      selected: null,
       fields: [
         [new Field(0, 0, "circlew"),new Field(1, 0, "circlew"),new Field(2, 0, "circlew"), new Field(3, 0, "circlew"),],
         [new Field(0, 1, "circlew"),new Field(1, 1, "circlew"), new Field(2, 1, "circlew"), new Field(3, 1, "circlew"),],
@@ -85,12 +79,13 @@ class Board extends React.Component {
     }
   }
     handleOnClick() {
-      this.setState({selected: true});
+      this.setState({
+        selected: true
+      });
   }
 
   findField (el) {
     let field = null
-
     for (let y = 0; y < this.fields.length; y++) {
       for (let x = 0; x < this.fields[y].length; x++) {
         field = this.getField(x, y)
@@ -114,23 +109,12 @@ class Board extends React.Component {
 
   renderBlack(circle) {
     let s = this.state;
-    s.fields[0][0].circle = "";
-    const selected = this.state.selected
-   
     if (circle === "circle") {
-      return <Black  onClick={this.handleOnClick} circle={"circle"} />;
-    }else if (circle === "circle") {
-        return<Black onClick={this.handleOnClick} circle={"circle"} />;
-      }
-   if (circle === "circlew"){
-    return<Black circle={"circlew"} />;
-  } else 
+      return <Black circle={"circle"} selected={this.state.selected == false} onClick={()=>this.handleOnClick()}/>;
+    } else if (circle === "circlew") {
+      return<Black circle={"circlew"}  selected={null}/>;
+  } else
   return<Black/>
-  if (selected) {
-      return<Black onClick={this.handleOnClick}/>;
-    } else {
-      return<Black onClick={this.handleOnClick}/>;
-    }
 }
 
   renderWhite() {
