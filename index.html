@@ -92,11 +92,11 @@ class Board extends React.Component {
     if(field === null && 
     this.state.selected.circle ==="circlew" && 
     this.state.currentPlayer === 1 && 
-    (((y === (this.state.selected.getY()+1))&&
-    ((x === (this.state.selected.getX()+1)) || (x === (this.state.selected.getX()-1))) 
+    (((y === (this.state.selected.y+1))&&
+    ((x === (this.state.selected.x+1)) || (x === (this.state.selected.x-1))) 
     ||
-    ((y === (this.state.selected.getY()+2))&&
-    (x === (this.state.selected.getX()+2)) || (x === (this.state.selected.getX()-2))))))
+    ((y === (this.state.selected.y+2))&&
+    (x === (this.state.selected.x+2)) || (x === (this.state.selected.x-2))))))
     {
     this.state.selected.setX(x)
     this.state.selected.setY(y)
@@ -110,11 +110,11 @@ class Board extends React.Component {
     else if(field === null && 
     this.state.selected.circle ==="circle" && 
     this.state.currentPlayer === 2 &&
-    (((y == (this.state.selected.getY()+1))&&
-    ((x == (this.state.selected.getX()+1)) || (x == (this.state.selected.getX()-1)))
+    (((y == (this.state.selected.y+1))&&
+    ((x == (this.state.selected.x+1)) || (x == (this.state.selected.x-1)))
     ||
-    ((this.state.selected.y == (this.state.selected.getY()-2))&&
-    (x == (this.state.selected.getX()+2)) || (x == (this.state.selected.getX()-2))))))
+    ((this.state.selected.y == (this.state.selected.y-2))&&
+    (x == (this.state.selected.x+2)) || (x == (this.state.selected.x-2))))))
     {
     this.state.selected.setX(x)
     this.state.selected.setY(y)
@@ -144,24 +144,6 @@ class Board extends React.Component {
       fields: this.state.fields,
       });}
       
-  }
-
-  findField (el) {
-    let field = null
-    for (let y = 0; y < this.fields.length; y++) {
-      for (let x = 0; x < this.fields[y].length; x++) {
-        field = this.getField(x, y)
-        if (field.getElement() === el) {
-          return field
-        }
-      }
-    }
-
-    return null
-  }
-
-  getField (x, y) {
-    return this.fields[y][x]
   }
 
   renderSquare_row() {
