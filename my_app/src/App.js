@@ -100,7 +100,6 @@ class White extends React.Component {
                 return;
             }
             if(diffY === 2 && diffX === -2){
-              
                 let field = chessboard[y-1][(x+this.state.selected.x)/2];
                 if(field.circle === "circle") {
                   let index = -1;
@@ -114,11 +113,10 @@ class White extends React.Component {
           if (index > -1){
           this.state.fields.splice(index, 1)
           }
-}
-                }else if(diffY === 2 && diffX === 2){
+            }
+            }else if(diffY === 2 && diffX === 2){
               
                   let field = chessboard[y-1][(x+this.state.selected.x)/2];
-
                   if(field.circle === "circle") {
                     let index = -1;
             for (let i in this.state.fields) {
@@ -144,18 +142,20 @@ class White extends React.Component {
        }
 
        moveBlack(x,y,chessboard){
-        let diffX = Math.abs(x - this.state.selected.x);
-        if(diffX > 2) {
+        let diffX = x - this.state.selected.x;
+        if(Math.abs(diffX) > 2) {
             return;
         }
         let diffY = this.state.selected.y - y;
         if(diffY <= 0 || diffY > 2) {
             return;
         }
-        if(diffY === 2){
-          let index = -1;
+        if(diffY === 2 && diffX === -2){
+            let field = chessboard[y+1][(x+this.state.selected.x)/2];
+            if(field.circle === "circlew") {
+              let index = -1;
           for (let i in this.state.fields) {
-            if (Math.abs(this.state.fields[i].x - this.state.selected.x) === 1
+            if ((this.state.fields[i].x - this.state.selected.x) === -1
             && this.state.fields[i].y === this.state.selected.y -1) {
               index = i;
               break;
@@ -164,14 +164,25 @@ class White extends React.Component {
           if (index > -1){
             this.state.fields.splice(index, 1)
           }
+            }
+        }else if(diffY === 2 && diffX === 2){
+
             let field = chessboard[y+1][(x+this.state.selected.x)/2];
             if(field.circle === "circlew") {
-            }
-            else{
-                return;
-            }
-        }
-        if(this.state.selected.circle === "circle") {
+              let index = -1;
+        for (let i in this.state.fields) {
+          if ((this.state.fields[i].x - this.state.selected.x) === 1
+          && this.state.fields[i].y === this.state.selected.y -1) {
+              index = i;
+              break;
+          }
+        } 
+       if (index > -1){
+        this.state.fields.splice(index, 1)
+       }
+     }
+       }
+       if(this.state.selected.circle === "circle") {
             this.state.selected.setX(x)
             this.state.selected.setY(y)
             this.setState({
@@ -179,8 +190,7 @@ class White extends React.Component {
                 selected: null
             });
         }
-       }
-
+      }
     handleOnClick(field,x,y,chessboard) {
         if(field != null) {
             this.selectPawn(x,y,chessboard);
