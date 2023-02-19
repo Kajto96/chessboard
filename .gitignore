@@ -17,3 +17,4 @@ yarn-error.log*
 .vscode
 /my_app/node_modules
 *.log
+/my_app/public
