@@ -91,21 +91,22 @@ class White extends React.Component {
        }
 
        moveWhite(x,y, chessboard){
-            let diffX = x - this.state.selected.x;
+            let diffX = x - this.state.selected.getX();
             if(Math.abs(diffX) > 2) {
                 return;
             }
-            let diffY = y - this.state.selected.y;
+            let diffY = y - this.state.selected.getY();
             if(diffY <= 0 || diffY > 2) {
                 return;
             }
             if(diffY === 2 && diffX === -2){
-                let field = chessboard[y-1][(x+this.state.selected.x)/2];
+                let field = chessboard[y-1][(x+this.state.selected.getX())/2];
                 if(field.circle === "circle") {
                   let index = -1;
           for (let i in this.state.fields) {
-            if ((this.state.fields[i].x - this.state.selected.x) === -1
-            && this.state.fields[i].y === this.state.selected.y +1) {
+            if ((this.state.fields[i].getX() - this.state.selected.getX()) === -1
+            && this.state.fields[i].getY() === this.state.selected.getY() +1
+            && this.state.fields[i].getCircle() === "circle") {
               index = i;
               break;
             }
@@ -116,12 +117,12 @@ class White extends React.Component {
             }
             }else if(diffY === 2 && diffX === 2){
               
-                  let field = chessboard[y-1][(x+this.state.selected.x)/2];
+                  let field = chessboard[y-1][(x+this.state.selected.getX())/2];
                   if(field.circle === "circle") {
                     let index = -1;
             for (let i in this.state.fields) {
-              if ((this.state.fields[i].x - this.state.selected.x) === 1
-              && this.state.fields[i].y === this.state.selected.y +1) {
+              if ((this.state.fields[i].getX() - this.state.selected.getX()) === 1
+              && this.state.fields[i].getY() === this.state.selected.getY() +1) {
                 index = i;
                 break;
               }
@@ -142,21 +143,21 @@ class White extends React.Component {
        }
 
        moveBlack(x,y,chessboard){
-        let diffX = x - this.state.selected.x;
+        let diffX = x - this.state.selected.getX();
         if(Math.abs(diffX) > 2) {
             return;
         }
-        let diffY = this.state.selected.y - y;
+        let diffY = this.state.selected.getY() - y;
         if(diffY <= 0 || diffY > 2) {
             return;
         }
         if(diffY === 2 && diffX === -2){
-            let field = chessboard[y+1][(x+this.state.selected.x)/2];
+            let field = chessboard[y+1][(x+this.state.selected.getX())/2];
             if(field.circle === "circlew") {
               let index = -1;
           for (let i in this.state.fields) {
-            if ((this.state.fields[i].x - this.state.selected.x) === -1
-            && this.state.fields[i].y === this.state.selected.y -1) {
+            if ((this.state.fields[i].getX() - this.state.selected.getX()) === -1
+            && this.state.fields[i].getY() === this.state.selected.getY() -1) {
               index = i;
               break;
             }
@@ -167,12 +168,12 @@ class White extends React.Component {
             }
         }else if(diffY === 2 && diffX === 2){
 
-            let field = chessboard[y+1][(x+this.state.selected.x)/2];
+            let field = chessboard[y+1][(x+this.state.selected.getX())/2];
             if(field.circle === "circlew") {
               let index = -1;
         for (let i in this.state.fields) {
-          if ((this.state.fields[i].x - this.state.selected.x) === 1
-          && this.state.fields[i].y === this.state.selected.y -1) {
+          if ((this.state.fields[i].getX() - this.state.selected.getX()) === 1
+          && this.state.fields[i].getY() === this.state.selected.getY() -1) {
               index = i;
               break;
           }
