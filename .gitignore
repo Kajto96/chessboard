@@ -18,3 +18,11 @@ yarn-error.log*
 /my_app/node_modules
 *.log
 /my_app/public
+chessboard.css
+chessboard.html
+chessboard.js
+circle.png
+circlew.png
+index.html
+index.js
+style.css
