@@ -2,7 +2,6 @@ import React from 'react';
 import Black from "./Black.js";
 import White from "./White.js";
 import SquareRow from './SquareRow.js';
-// / git clean zostaw tylko origin / usun niepotrzebne pliki/ potem zrob logike do reduxa 
 
 class Field {
   constructor(x, y, circle) {
